@@ -3,6 +3,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Zsh
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+export EDITOR=nano
+export VISUAL="$EDITOR"
 
 # Go Env Vars
 export GOPRIVATE=github.com/mo-work/*
