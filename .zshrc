@@ -8,8 +8,6 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -93,7 +91,6 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -132,18 +129,11 @@ alias ls="gls --color=always"
 test -r ~/.dircolors && eval $(gdircolors ~/.dircolors/bliss.dircolors)
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Go Env Vars
-export GOPRIVATE=github.com/mo-work/*
-
 # NVM
-export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export NVM_COLORS='rgBcm'
-
 # Tmux
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 setopt hist_ignore_dups
 setopt hist_ignore_space
 
@@ -153,8 +143,6 @@ eval $(thefuck --alias)
 # Z
 . /opt/homebrew/etc/profile.d/z.sh
 
-export GPG_TTY=$(tty)
-
 # fzf
 source <(fzf --zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -162,9 +150,3 @@ source <(fzf --zsh)
 # asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 . ~/.asdf/plugins/golang/set-env.zsh
-export ASDF_NODEJS_LEGACY_FILE_DYNAMIC_STRATEGY=latest_available
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-
-# PSql
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-
