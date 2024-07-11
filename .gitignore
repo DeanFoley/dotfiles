@@ -1,0 +1,35 @@
+.~lock.*#
+
+# Mac stuff
+.DS_Store
+
+# Ctags
+tags
+TAGS
+tags
+.tags
+
+# Backup
+*.bak
+*.tmp
+*~
+.*.sw*
+
+# Archives
+*.7z
+*.jar
+*.rar
+*.zip
+*.tgz
+*.gz
+*.bzip
+*.xz
+*.lzma
+*.iso
+*.tar
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm

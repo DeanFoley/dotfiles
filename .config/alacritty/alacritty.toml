@@ -1,0 +1,73 @@
+[[keyboard.bindings]]
+chars = "º"
+key = "Key0"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "¡"
+key = "Key1"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "€"
+key = "Key2"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "#"
+key = "Key3"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "¢"
+key = "Key4"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "∞"
+key = "Key5"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "§"
+key = "Key6"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "¶"
+key = "Key7"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "•"
+key = "Key8"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "ª"
+key = "Key9"
+mods = "Alt"
+
+[mouse.url]
+modifiers = "Command"
+
+[mouse.url.launcher]
+program = "open"
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+program = "/bin/zsh"
+args = "-- tmux -a -S quake"
+
+[window]
+decorations = "none"
+dimensions = { columns = 500, lines = 30 }
+position = { x = 0, y = 0 }
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Command"
+action = "ToggleSimpleFullscreen"
