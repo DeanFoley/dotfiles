@@ -1,3 +1,10 @@
+[font]
+size = 14
+
+[font.normal]
+family = "MesloLGS NF"
+style = "Regular"
+
 [[keyboard.bindings]]
 chars = "º"
 key = "Key0"
@@ -48,19 +55,14 @@ chars = "ª"
 key = "Key9"
 mods = "Alt"
 
-[mouse.url]
-modifiers = "Command"
-
-[mouse.url.launcher]
-program = "open"
-
 [selection]
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [shell]
-program = "/bin/zsh"
-args = "-- tmux -a -S quake"
+program = "/opt/homebrew/bin/tmux"
+args = ["new", "-A", "-s", "quake"]
+
 
 [window]
 decorations = "none"
