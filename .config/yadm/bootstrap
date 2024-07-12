@@ -1,7 +1,6 @@
 #!/bin/sh
 
 system_type=$(uname -s)
-system_class=$(yadm config local.class)
 
 if [ "$system_type" = "Darwin" ]; then
 
@@ -15,8 +14,10 @@ if [ "$system_type" = "Darwin" ]; then
     echo "Updating homebrew bundle"
     brew bundle --global
 
-    echo "Updating context-specific Homebrew bundle"
-    brew bundle --file=".Brewfile.local"
+    if [ -f "$HOME/.Brewfile.local" ]; then 
+      echo "Updating context-specific Homebrew bundle"
+      brew bundle --global --file=".Brewfile.local"
+    fi
   fi
 
   if [ -d "$HOME/.iterm2" ]; then
@@ -26,6 +27,7 @@ if [ "$system_type" = "Darwin" ]; then
 
 fi
 
-if [ "$system_class" = "Work" ]; then 
+if [ -f "$HOME/.zshenv.local" ]; then 
   cat .zshenv.local >> .zshenv
+  rm .zshenv.local
 fi
