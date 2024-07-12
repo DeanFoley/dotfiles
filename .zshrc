@@ -143,7 +143,6 @@ eval $(thefuck --alias)
 
 # fzf
 source <(fzf --zsh)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
