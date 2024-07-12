@@ -1,6 +1,7 @@
 #!/bin/sh
 
 system_type=$(uname -s)
+system_class=$(yadm config local.class)
 
 if [ "$system_type" = "Darwin" ]; then
 
@@ -23,4 +24,8 @@ if [ "$system_type" = "Darwin" ]; then
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
   fi
 
+fi
+
+if [ "$system_class" = "Work" ]; then 
+  cat .zshenv.local >> .zshenv
 fi
