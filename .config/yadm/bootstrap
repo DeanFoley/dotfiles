@@ -31,3 +31,15 @@ if [ -f "$HOME/.zshenv.local" ]; then
   cat .zshenv.local >> .zshenv
   rm .zshenv.local
 fi
+
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then 
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+if [ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ]; then
+  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
+fi
+
+if "test ! -d ~/.tmux/plugins/tpm"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
+fi

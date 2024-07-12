@@ -90,6 +90,7 @@ plugins=(
   nvm
   tmux
   tmuxinator
+  you-should-use
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -126,15 +127,9 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # .dircolors support
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 alias ls="gls --color=always"
 test -r ~/.dircolors && eval $(gdircolors ~/.dircolors/bliss.dircolors)
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# NVM
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Tmux
 setopt hist_ignore_dups

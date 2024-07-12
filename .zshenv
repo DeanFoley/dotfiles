@@ -6,10 +6,6 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 export EDITOR=nano
 export VISUAL="$EDITOR"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-export NVM_COLORS='rgBcm'
-
 # Tmux
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 
@@ -22,3 +18,7 @@ export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 
 # PSql
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+# dircolors
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
