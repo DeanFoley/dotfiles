@@ -1,0 +1,2 @@
+# Go Env Vars
+export GOPRIVATE=github.com/mo-work/*
