@@ -91,6 +91,7 @@ plugins=(
   tmux
   tmuxinator
   you-should-use
+  # zsh-autocomplete
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
