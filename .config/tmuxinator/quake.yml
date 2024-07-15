@@ -46,7 +46,7 @@ root: ~/
 
 windows:
   - hud:
-      layout: da5e,316x29,0,0{203x29,0,0,25,112x29,204,0,26}
+      layout: 523f,253x29,0,0{131x29,0,0,31,121x29,132,0,32}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
