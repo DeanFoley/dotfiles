@@ -40,21 +40,18 @@ if [ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ]; then
   git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
 fi
 
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions
-" ]; then
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-" ]; then
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autocomplete
-" ]; then
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autocomplete" ]; then
   git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
 fi
 
-if "test ! -d ~/.tmux/plugins/tpm"
+if [ ! -d "~/.tmux/plugins/tpm" ];
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
 fi
