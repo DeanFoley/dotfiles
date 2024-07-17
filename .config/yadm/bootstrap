@@ -52,8 +52,18 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autocomplete" ]; then
   git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
 fi
 
+# Tmux configuration & plugin installation
 tmux source-file ~/.tmux.conf
 
 if [ ! -d "~/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
+fi
+
+# Asdf third-party plugins
+if [ ! -d "~/.asdf/plugins/golang" ]; then
+  asdf plugin add golang ssh://git@github.com/asdf-community/asdf-golang.git
+fi
+
+if [ ! -d "~/.asdf/plugins/rust" ]; then
+  asdf plugin add rust ssh://git@github.com/code-lever/asdf-rust.git
 fi
