@@ -65,7 +65,7 @@ args = ["new", "-A", "-s", "quake"]
 
 
 [window]
-decorations = "none"
+decorations = "Buttonless"
 dimensions = { columns = 500, lines = 30 }
 position = { x = 0, y = 0 }
 
