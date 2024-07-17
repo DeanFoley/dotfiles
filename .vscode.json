@@ -1,105 +1,150 @@
 {
-    "workbench.startupEditor": "none",
-    "terminal.integrated.fontFamily": "'MesloLGS NF'",
-    "workbench.iconTheme": "eq-material-theme-icons-light",
-    "explorer.confirmDelete": false,
-    "git.confirmSync": false,
-    "git.autofetch": true,
-    "editor.fontFamily": "Monaspace Argon, monospace",
-    "editor.fontSize": 16,
-    "editor.fontWeight": "500",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.defaultProfile.osx": "tmux-shell",
-    "terminal.integrated.profiles.osx": {
-      "tmux-shell": {
-        "path": "tmux",
-        "args": ["new-session", "-A", "-s", "${workspaceFolderBasename}-dev"]
-      }
-    },
-    "editor.fontLigatures": true,
-    "workbench.colorTheme": "Allogenes",
-    "workbench.preferredLightColorTheme": "Allogenes",
-    "workbench.preferredDarkColorTheme": "Serika Dark",
-    "workbench.preferredHighContrastColorTheme": "Default High Contrast",
-    "workbench.preferredHighContrastLightColorTheme": "Default High Contrast Light",
-    "[go]": {
-      "editor.fontFamily": "'GoMono Nerd Font Mono', monospace"
-    },
-    "[mdx]": {
-      "editor.inlineSuggest.enabled": false,
-    },
-    "powermode.shake.enabled": false,
-    "workbench.fontAliasing": "antialiased",
-    "window.autoDetectHighContrast": false,
-    "window.autoDetectColorScheme": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.wordWrap": "on",
-    "go.delveConfig": {
-      "debugAdapter": "dlv-dap",
-    },
-    "go.toolsEnvVars": {},
-    "todohighlight.isEnable": true,
-    "todohighlight.include": [
-      "**/*.js",
-      "**/*.jsx",
-      "**/*.ts",
-      "**/*.tsx",
-      "**/*.html",
-      "**/*.css",
-      "**/*.scss",
-      "**/*.php",
-      "**/*.rb",
-      "**/*.txt",
-      "**/*.mdown",
-      "**/*.md",
-      "**.*.go"
-    ],
-    "go.toolsManagement.autoUpdate": true,
-    "git.suggestSmartCommit": false,
-    "gitlens.rebaseEditor.ordering": "asc",
-    "security.workspace.trust.untrustedFiles": "open",
-    "update.showReleaseNotes": false,
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[jsonc]": {
-      "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "fontRandomizer.fontList": [
-      "Monaspace Neon",
-      "Monaspace Argon",
-      "Monaspace Krypton",
-      "Monaspace Xenon"
-    ],
-    "[json]": {
-      "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "editor.guides.bracketPairs": true,
-    "indentRainbow.colorOnWhiteSpaceOnly": true,
-    "indentRainbow.indicatorStyle": "light",
-    "indentRainbow.lightIndicatorStyleLineWidth": 5,
-    "telemetry.telemetryLevel": "off",
-    "gitlens.views.branches.branches.layout": "list",
-    "eslint.useFlatConfig": true,
-    "eslint.format.enable": true,
-		"typescript.tsserver.experimental.enableProjectDiagnostics": true,
-    "gitlens.plusFeatures.enabled": false,
-    "gitlens.telemetry.enabled": false,
-    "docker-explorer.enableTelemetry": false,
-    "gitlens.views.commits.avatars": false,
-    "workbench.colorCustomizations": {
-    
-    },
-    "rubyLsp.enableExperimentalFeatures": true,
-    "rubyLsp.rubyVersionManager": {
-      "identifier": "asdf"
-    },
-    "extensions.ignoreRecommendations": true,
-    "search.useIgnoreFiles": true,
-    "search.useGlobalIgnoreFiles": true,
-    "terminal.external.osxExec": "iTerm.app",
-    "workbench.settings.editor": "json"
-  }
+  /* CORE */
+  // Editor
+  "editor.fontFamily": "Monaspace Xenon, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.fontWeight": "500",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.wordWrap": "on",
+  "editor.guides.bracketPairs": true,
+
+  // Explorer
+  "explorer.confirmDelete": false,
+
+  // Extensions
+  "extensions.ignoreRecommendations": true,
+
+  // Search
+  "search.useIgnoreFiles": true,
+  "search.useGlobalIgnoreFiles": true,
+
+  // Security
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // Telemetry
+  "telemetry.telemetryLevel": "off",
+
+  // Terminal
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontFamily": "'MesloLGS NF'",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.defaultProfile.osx": "tmux-shell",
+  "terminal.integrated.profiles.osx": {
+    "tmux-shell": {
+      "path": "tmux",
+      "args": [
+        "new-session",
+        "-A",
+        "-s",
+        "${workspaceFolderBasename}-dev"
+      ]
+    }
+  },
+
+  // Update
+  "update.showReleaseNotes": false,
+
+  // Window
+  "window.autoDetectHighContrast": false,
+  "window.autoDetectColorScheme": true,
+
+  // Workbench
+  "workbench.colorCustomizations": {},
+  "workbench.colorTheme": "Allogenes",
+  "workbench.iconTheme": "eq-material-theme-icons-light",
+  "workbench.fontAliasing": "antialiased",
+  "workbench.preferredLightColorTheme": "Allogenes",
+  "workbench.preferredDarkColorTheme": "Serika Dark",
+  "workbench.preferredHighContrastColorTheme": "Default High Contrast",
+  "workbench.preferredHighContrastLightColorTheme": "Default High Contrast Light",
+  "workbench.startupEditor": "none",
+  "workbench.settings.editor": "json",
+
+  // filetype-specific settings
+  "[go]": {
+    "editor.fontFamily": "'GoMono Nerd Font Mono', monospace"
+  },
+  "[mdx]": {
+    "editor.inlineSuggest.enabled": false,
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+
+  
+  /* EXTENSIONS */
+  // Docker 
+  "docker-explorer.enableTelemetry": false,
+
+  // Font Randomizer
+  "fontRandomizer.fontList": [
+    "Monaspace Neon",
+    "Monaspace Argon",
+    "Monaspace Krypton",
+    "Monaspace Xenon"
+  ],
+  // Git
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.suggestSmartCommit": false,
+
+  // GitLens
+  "gitlens.plusFeatures.enabled": false,
+  "gitlens.rebaseEditor.ordering": "asc",
+  "gitlens.telemetry.enabled": false,
+  "gitlens.views.branches.branches.layout": "list",
+  "gitlens.views.commits.avatars": false,
+
+  // Go settings
+  // these should probably be workspace-specific where relevant tbh
+  "go.delveConfig": {
+    "debugAdapter": "dlv-dap",
+  },
+  "go.toolsEnvVars": {},
+  "go.toolsManagement.autoUpdate": true,
+
+  // Indent Rainbow
+  "indentRainbow.colorOnWhiteSpaceOnly": true,
+  "indentRainbow.indicatorStyle": "light",
+  "indentRainbow.lightIndicatorStyleLineWidth": 5,
+
+  // Ruby
+  // should be workspace-specific where relevant
+  "rubyLsp.enableExperimentalFeatures": true,
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "asdf"
+  },
+
+  // TypeScript
+  // should be workspace-specific where relevant
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  
+  // TODO Highlight
+  "todohighlight.isEnable": true,
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.php",
+    "**/*.rb",
+    "**/*.txt",
+    "**/*.mdown",
+    "**/*.md",
+    "**/*.go"
+  ],
+}

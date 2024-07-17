@@ -3,10 +3,13 @@
 [core]
 	# Use custom `.gitignore`
 	excludesfile = /Users/deanfoley/.gitignore
+	pager = delta
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[delta]
+	side-by-side = true
 [include]
 	path = .gitconfig.local
