@@ -2,12 +2,12 @@
 
 system_type=$(uname -s)
 
+# Mac-specific configuration
 if [ "$system_type" = "Darwin" ]; then
-
-  # install homebrew if it's missing
+  # install Homebrew if it's missing
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing homebrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
 
   if [ -f "$HOME/.Brewfile" ]; then
@@ -24,7 +24,9 @@ if [ "$system_type" = "Darwin" ]; then
     echo "Setting iTerm preference folder"
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
   fi
-
+  
+  # Code config
+  ln -sf ~/.vscode.json "~/Library/Application Support/Code/User/settings.json"
 fi
 
 if [ -f "$HOME/.zshenv.local" ]; then 
@@ -32,6 +34,7 @@ if [ -f "$HOME/.zshenv.local" ]; then
   rm .zshenv.local
 fi
 
+# Zsh plugins
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then 
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi

@@ -1,7 +1,7 @@
 {
   /* CORE */
   // Editor
-  "editor.fontFamily": "Monaspace Xenon, monospace",
+  "editor.fontFamily": "Monaspace Krypton, monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.fontWeight": "500",
