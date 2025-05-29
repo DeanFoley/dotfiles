@@ -78,9 +78,5 @@ eval $(thefuck --alias)
 # fzf
 source <(fzf --zsh)
 
-# asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-. ~/.asdf/plugins/golang/set-env.zsh
-
 # Starship
 eval "$(starship init zsh)"

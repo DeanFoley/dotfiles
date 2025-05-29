@@ -26,7 +26,7 @@ if [ "$system_type" = "Darwin" ]; then
   fi
   
   # Code config
-  ln -sf ~/.vscode.json "~/Library/Application Support/Code/User/settings.json"
+  ln -sf ~/.vscode.json "$HOME/Library/Application Support/Code/User/settings.json"
 fi
 
 if [ -f "$HOME/.zshenv.local" ]; then 
