@@ -4,14 +4,33 @@ system_type=$(uname -s)
 
 # Mac-specific configuration
 if [ "$system_type" = "Darwin" ]; then
+  echo "Running MacOS-specific steps"
+
+  # desired OS settings
+  # disable workplace auto-switching
+  defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+  
+  # enable repeating key input by holding
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+  
+  mkdir ~/Screenshots
+  defaults write com.apple.screencapture location ~/Screenshots/
+
+  killall SystemUIServer
+  killall Dock # Restart the Dock process
+
+  # get Xcode
+  xcode-select --install
+
   # install Homebrew if it's missing
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
 
+  # Brew installation
   if [ -f "$HOME/.Brewfile" ]; then
-    echo "Updating homebrew bundle"
+    echo "Updating Homebrew bundle"
     brew bundle --global
 
     if [ -f "$HOME/.Brewfile.local" ]; then 
@@ -23,6 +42,7 @@ if [ "$system_type" = "Darwin" ]; then
   if [ -d "$HOME/.iterm2" ]; then
     echo "Setting iTerm preference folder"
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
+    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
   fi
   
   # Code config
@@ -34,25 +54,37 @@ if [ -f "$HOME/.zshenv.local" ]; then
   rm .zshenv.local
 fi
 
-# Zsh plugins
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then 
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-fi
+# Oh My Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  mkdir $ZSH_CUSTOM/plugins
+  mkdir $ZSH_CUSTOM/themes
 
-if [ ! -d "$ZSH_CUSTOM/plugins/you-should-use" ]; then
-  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
-fi
+  # Delete auto-generated .zshrc file and restore my proper, beautiful one
+  rm .zshrc && mv .zshrc.pre-oh-my-zsh .zshrc
 
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
+  # OMZ plugins
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then 
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  fi
 
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-fi
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use" ]; then
+    git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use
+  fi
 
-if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autocomplete" ]; then
-  git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  fi
+
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  fi
+
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete" ]; then
+    git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+  fi
+
+  source ~/.zshrc
 fi
 
 # Tmux configuration & plugin installation
@@ -70,3 +102,5 @@ fi
 if [ ! -d "~/.asdf/plugins/rust" ]; then
   asdf plugin add rust ssh://git@github.com/code-lever/asdf-rust.git
 fi
+
+echo "Bootstrap completed!"
