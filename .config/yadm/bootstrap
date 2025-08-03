@@ -1,52 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+chsh -s $(which zsh)
 
 system_type=$(uname -s)
 
 # Mac-specific configuration
 if [ "$system_type" = "Darwin" ]; then
-  echo "Running MacOS-specific steps"
-
-  # desired OS settings
-  # disable workplace auto-switching
-  defaults write com.apple.dock workspaces-auto-swoosh -bool NO
-  
-  # enable repeating key input by holding
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-  
-  mkdir ~/Screenshots
-  defaults write com.apple.screencapture location ~/Screenshots/
-
-  killall SystemUIServer
-  killall Dock # Restart the Dock process
-
-  # get Xcode
-  xcode-select --install
-
-  # install Homebrew if it's missing
-  if ! command -v brew >/dev/null 2>&1; then
-    echo "Installing homebrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  fi
-
-  # Brew installation
-  if [ -f "$HOME/.Brewfile" ]; then
-    echo "Updating Homebrew bundle"
-    brew bundle --global
-
-    if [ -f "$HOME/.Brewfile.local" ]; then 
-      echo "Updating context-specific Homebrew bundle"
-      brew bundle --global --file=".Brewfile.local"
-    fi
-  fi
-
-  if [ -d "$HOME/.iterm2" ]; then
-    echo "Setting iTerm preference folder"
-    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
-    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
-  fi
-  
-  # Code config
-  ln -sf ~/.vscode.json "$HOME/Library/Application Support/Code/User/settings.json"
+  ~/.macos
 fi
 
 if [ -f "$HOME/.zshenv.local" ]; then 
@@ -64,8 +24,9 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   rm .zshrc && mv .zshrc.pre-oh-my-zsh .zshrc
 
   # OMZ plugins
-  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then 
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship" ]; then 
+    git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
   fi
 
   if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use" ]; then
@@ -76,12 +37,17 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   fi
 
-  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting" ]; then
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
   fi
 
-  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete" ]; then
-    git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+  # Disabling this for now; not sure if we're a fan of it or not
+  # if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autocomplete" ]; then
+  #   git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+  # fi
+
+  if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-bat" ]; then
+    git clone https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-bat
   fi
 
   source ~/.zshrc
@@ -90,16 +56,16 @@ fi
 # Tmux configuration & plugin installation
 tmux source-file ~/.tmux.conf
 
-if [ ! -d "~/.tmux/plugins/tpm" ]; then
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
 # Asdf third-party plugins
-if [ ! -d "~/.asdf/plugins/golang" ]; then
+if [ ! -d "$HOME/.asdf/plugins/golang" ]; then
   asdf plugin add golang ssh://git@github.com/asdf-community/asdf-golang.git
 fi
 
-if [ ! -d "~/.asdf/plugins/rust" ]; then
+if [ ! -d "$HOME/.asdf/plugins/rust" ]; then
   asdf plugin add rust ssh://git@github.com/code-lever/asdf-rust.git
 fi
 

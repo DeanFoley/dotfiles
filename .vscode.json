@@ -1,7 +1,7 @@
 {
   /* CORE */
   // Editor
-  "editor.fontFamily": "Monaspace Xenon",
+  "editor.fontFamily": "Monaspace Xenon, monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.fontWeight": "500",
@@ -27,7 +27,7 @@
 
   // Terminal
   "terminal.external.osxExec": "iTerm.app",
-  "terminal.integrated.fontFamily": "'MesloLGS NF'",
+  "terminal.integrated.fontFamily": "'RecMonoCasualNFM'",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.defaultProfile.osx": "tmux-shell",
   "terminal.integrated.profiles.osx": {

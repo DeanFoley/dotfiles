@@ -1,3 +1,19 @@
+# spaceship config
+SPACESHIP_PROMPT_ASYNC=false
+SPACESHIP_PROMPT_ADD_NEWLINE="true"
+SPACESHIP_CHAR_SYMBOL="⚡"
+SPACESHIP_DIR_TRUNC_REPO=false
+
+# Minimal spaceship sections for performance
+SPACESHIP_PROMPT_ORDER=(
+    user
+    dir
+    git
+    line_sep
+    char
+    golang
+) 
+
 # Time
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_12HR=true
@@ -8,4 +24,6 @@ SPACESHIP_BATTERY_SYMBOL_CHARGING=󰂄·
 SPACESHIP_BATTERY_SYMBOL_FULL=󱟢·
 
 # Golang
+SPACESHIP_GOLANG_ASYNC=true
+SPACESHIP_GOLANG_SHOW=true
 SPACESHIP_GOLANG_SYMBOL=·

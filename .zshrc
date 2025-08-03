@@ -11,8 +11,6 @@ else
     compinit -C
 fi
 
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
-ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 if [[ -o interactive ]]; then
     fastfetch
@@ -27,10 +25,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="spaceship"
 
-zstyle ':omz:update' mode auto
-zstyle ':omz:update' frequency 3
+zstyle ':omz:update' mode disabled
 
 ENABLE_CORRECTION="true"
 
@@ -39,34 +36,32 @@ ENABLE_CORRECTION="true"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 plugins=(
-  asdf
-  aws
   brew
   colored-man-pages
   colorize
+  common-aliases
   copyfile
   cp
   docker
   git
   golang
-  kubectl
-  npm
+  iterm2
   tmux
   tmuxinator
   you-should-use
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  zsh-bat
+  fast-syntax-highlighting
 )
 
-plugins+=(nvm)
-# add the following before Oh My Zsh is sourced
-zstyle ':omz:plugins:nvm' lazy yes
-
+zstyle :omz:plugins:iterm2 shell-integration yes
 source $ZSH/oh-my-zsh.sh
+
+# Autosuggest settings
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -74,6 +69,16 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+
+# Lazy load SSH agent
+function _load_ssh_agent() {
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+        eval "$(ssh-agent -s)" > /dev/null
+        ssh-add ~/.ssh/id_github_sign_and_auth 2>/dev/null
+    fi
+}
+autoload -U add-zsh-hook
+add-zsh-hook precmd _load_ssh_agent
 
 alias zshconfig="code ~/.zshrc"
 alias tmuxconf="code ~/.tmux.conf"
@@ -97,3 +102,6 @@ eval $(thefuck --alias)
 
 # fzf
 source <(fzf --zsh)
+
+export GOPATH=$HOME/Code
+export PATH="$PATH:$GOPATH/bin"

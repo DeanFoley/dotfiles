@@ -13,3 +13,7 @@
 	side-by-side = true
 [include]
 	path = .gitconfig.local
+[user]
+	signingkey = 933D54D678FDE86D927BB75291CB2CE668E890E
+[commit]
+	gpgsign = true
