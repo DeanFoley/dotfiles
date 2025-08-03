@@ -5,6 +5,7 @@ Grab `yadm` - https://yadm.io/docs/install
 ```bash
   yadm clone https://github.com/DeanFoley/dotfiles
   chmod +x ~/.config/yadm/bootstrap
+  yadm config local.class Personal/Work
   yadm bootstrap
 ```
 
