@@ -129,7 +129,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 
 # Subpixel font rendering on all dispalys
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
-                                                        
+
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
@@ -145,7 +145,8 @@ defaults write com.apple.dock mru-spaces -bool false
 mkdir ~/Screenshots
 defaults write com.apple.screencapture location ~/Screenshots/
 
-sudo nvram SystemAudioVolume=" "
+nvram SystemAudioVolume=" "
+nvram BootPreference=%00
 
 killall SystemUIServer
 killall Dock # Restart the Dock process

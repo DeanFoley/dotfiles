@@ -1,5 +1,9 @@
 clear
 
+if [[ -o interactive ]]; then
+    fastfetch
+fi
+
 DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
@@ -9,20 +13,6 @@ if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; t
     compinit
 else
     compinit -C
-fi
-
-
-if [[ -o interactive ]]; then
-    fastfetch
-fi
-
-export TERM='xterm-256color'
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 ZSH_THEME="spaceship"
@@ -80,13 +70,7 @@ function _load_ssh_agent() {
 autoload -U add-zsh-hook
 add-zsh-hook precmd _load_ssh_agent
 
-alias zshconfig="code ~/.zshrc"
-alias tmuxconf="code ~/.tmux.conf"
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # dircolors support
-alias ls="gls --color=always"
 test -r ~/.dircolors && eval $(gdircolors ~/.dircolors/bliss.dircolors)
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
@@ -103,5 +87,5 @@ eval $(thefuck --alias)
 # fzf
 source <(fzf --zsh)
 
-export GOPATH=$HOME/Code
-export PATH="$PATH:$GOPATH/bin"
+# Source aliases
+source ~/.zsh_aliases

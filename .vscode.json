@@ -1,7 +1,7 @@
 {
   /* CORE */
   // Editor
-  "editor.fontFamily": "Monaspace Xenon, monospace",
+  "editor.fontFamily": "Monaspace Argon, monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.fontWeight": "500",
@@ -55,8 +55,8 @@
   "workbench.fontAliasing": "antialiased",
   "workbench.preferredLightColorTheme": "Allogenes",
   "workbench.preferredDarkColorTheme": "Serika Dark",
-  "workbench.preferredHighContrastColorTheme": "Default High Contrast",
-  "workbench.preferredHighContrastLightColorTheme": "Default High Contrast Light",
+  "workbench.preferredHighContrastColorTheme": "Allogenes",
+  "workbench.preferredHighContrastLightColorTheme": "Serika Dark",
   "workbench.startupEditor": "none",
   "workbench.settings.editor": "json",
 
@@ -80,8 +80,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-
-  
   /* EXTENSIONS */
   // Docker 
   "docker-explorer.enableTelemetry": false,
@@ -93,6 +91,9 @@
     "Monaspace Krypton",
     "Monaspace Xenon"
   ],
+  "fontRandomizer.activateOnStartup": true,
+  "fontRandomizer.autoRefresh": "Every day",
+
   // Git
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -118,13 +119,6 @@
   "indentRainbow.indicatorStyle": "light",
   "indentRainbow.lightIndicatorStyleLineWidth": 5,
 
-  // Ruby
-  // should be workspace-specific where relevant
-  "rubyLsp.enableExperimentalFeatures": true,
-  "rubyLsp.rubyVersionManager": {
-    "identifier": "asdf"
-  },
-
   // TypeScript
   // should be workspace-specific where relevant
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
@@ -146,4 +140,6 @@
     "**/*.md",
     "**/*.go"
   ],
+  "workbench.iconTheme": "material-icon-theme",
+  "window.systemColorTheme": "auto",
 }

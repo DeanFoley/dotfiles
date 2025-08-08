@@ -1,0 +1,6 @@
+# Starling config
+if [ -e /Users/dean.foley/.starling/etc/profile ]; then
+    . /Users/dean.foley/.starling/etc/profile
+else
+    echo "Could not find '/Users/dean.foley/.starling/etc/profile'"
+fi

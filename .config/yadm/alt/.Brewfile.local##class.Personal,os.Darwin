@@ -1,0 +1,7 @@
+# Brews
+brew "discord"
+brew "betterdiscord-installer"
+
+# Casks 
+cask "bitwarden"
+cask "waterfox"

@@ -1,0 +1,24 @@
+# These are all *broadly* managed by internal tooling
+# This is here in case anything fails to install from the toolbox for some reason
+
+tap "fluxcd/tap"
+
+brew "awscli"
+brew "conftest"
+brew "go-task"
+brew "jfrog-cli"
+brew "kubeconform"
+brew "kubernetes-cli"
+brew "kustomize"
+brew "mas"
+brew "openjdk@21"
+brew "shellcheck"
+brew "tox"
+brew "uv"
+brew "virtualenv"
+brew "fluxcd/tap/flux"
+
+cask "1password"
+cask "1password-cli"
+cask "font-monaspace"
+cask "gcloud-cli"

@@ -4,11 +4,6 @@ chsh -s $(which zsh)
 
 system_type=$(uname -s)
 
-# Mac-specific configuration
-if [ "$system_type" = "Darwin" ]; then
-  ~/.macos
-fi
-
 if [ -f "$HOME/.zshenv.local" ]; then 
   cat .zshenv.local >> .zshenv
   rm .zshenv.local
@@ -26,7 +21,7 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
   # OMZ plugins
   if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship" ]; then 
     git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship
-    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship"
   fi
 
   if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/you-should-use" ]; then
@@ -60,13 +55,7 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 
-# Asdf third-party plugins
-if [ ! -d "$HOME/.asdf/plugins/golang" ]; then
-  asdf plugin add golang ssh://git@github.com/asdf-community/asdf-golang.git
+# Mac-specific configuration
+if [ "$system_type" = "Darwin" ]; then
+  ./.macos
 fi
-
-if [ ! -d "$HOME/.asdf/plugins/rust" ]; then
-  asdf plugin add rust ssh://git@github.com/code-lever/asdf-rust.git
-fi
-
-echo "Bootstrap completed!"
