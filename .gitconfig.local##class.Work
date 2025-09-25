@@ -1,6 +1,0 @@
-[user]
-	email = dean.foley@mo.work
-	name = Dean Foley
-	signingkey = 95C37FFFB7865B42
-[commit]
-	gpgsign = true
