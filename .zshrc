@@ -25,7 +25,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel10k"
 
 zstyle ':omz:update' mode disabled
 
@@ -37,22 +37,22 @@ ENABLE_CORRECTION="true"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(
-  brew
-  colored-man-pages
-  colorize
-  common-aliases
-  copyfile
-  cp
-  docker
-  git
-  golang
-  iterm2
-  tmux
-  tmuxinator
-  you-should-use
-  zsh-autosuggestions
-  zsh-bat
-  fast-syntax-highlighting
+    brew
+    colored-man-pages
+    colorize
+    common-aliases
+    copyfile
+    cp
+    docker
+    git
+    golang
+    iterm2
+    tmux
+    tmuxinator
+    you-should-use
+    zsh-autosuggestions
+    zsh-bat
+    fast-syntax-highlighting
 )
 
 zstyle :omz:plugins:iterm2 shell-integration yes
