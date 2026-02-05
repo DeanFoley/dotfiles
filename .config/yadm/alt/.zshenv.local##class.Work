@@ -1,0 +1,2 @@
+export GOPROXY="https://<USERNAME>:<API_KEY>@starlingbank.jfrog.io/artifactory/api/go/go"
+export GONOSUMDB=github.com/starlingbank/*

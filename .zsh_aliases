@@ -1,0 +1,7 @@
+alias zshconfig="code ~/.zshrc"
+alias tmuxconf="code ~/.tmux.conf"
+alias ls="gls --color=always"
+alias cat="bat --color=always"
+
+alias refresh="exec zsh"
+alias f5="refresh"

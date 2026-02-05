@@ -1,14 +1,18 @@
 #!/bin/bash
 
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+context=$(yadm config local.class)
 
-printf "Running MacOS-specific steps\n"
+echo "Running MacOS-specific steps"
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # desired OS settings
 
@@ -127,7 +131,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 
 # Subpixel font rendering on all dispalys
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
-                                                        
+
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
@@ -143,7 +147,8 @@ defaults write com.apple.dock mru-spaces -bool false
 mkdir ~/Screenshots
 defaults write com.apple.screencapture location ~/Screenshots/
 
-sudo nvram SystemAudioVolume=" "
+nvram SystemAudioVolume=" "
+nvram BootPreference=%00
 
 killall SystemUIServer
 killall Dock # Restart the Dock process
@@ -151,35 +156,33 @@ killall Dock # Restart the Dock process
 # get Xcode
 xcode-select --install
 
-read -p $'\nDo you want to automatically install your personal software? ' -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    read -p $'\nAre you sure? Remember what happened last time ' -n 1 -r
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        # install Homebrew if it's missing
-        if ! command -v brew >/dev/null 2>&1; then
-            printf '\nInstalling homebrew'
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-        fi
+# install Homebrew if it's missing
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    echo "Homebrew installed; Brewfile available for bulk installation"
+fi
 
-        # # Brew installation
-        # if [ -f "$HOME/.Brewfile" ]; then
-        #     printf "Updating Homebrew bundle\n"
-        #     brew bundle --global
+# Brew installation
+# if [ -f "$HOME/.Brewfile" ]; then
+#     echo "Updating Homebrew bundle"
+#     brew bundle --global
 
-        #     if [ -f "$HOME/.Brewfile.local" ]; then 
-        #         printf "Updating context-specific Homebrew bundle\n"
-        #         brew bundle --file=".Brewfile.local"
-        #     fi
-        # fi
-    fi
+#     if [ -f "$HOME/.Brewfile.local" ]; then 
+#         echo "Updating context-specific Homebrew bundle"
+#         brew bundle --file=".Brewfile.local"
+#     fi
+# fi
 
-    if [ -d "$HOME/.iterm2" ]; then 
-        printf "Setting iTerm preference folder\n"
-        defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
-        defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
-    fi  
+if [ "$context" = "Work" ]; then 
+    sed 's/SSH_KEY/DeanFoleyEngine'
+fi
+
+if [ -d "$HOME/.iterm2" ]; then
+    echo "Setting iTerm preference folder"
+    defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
+    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder 1
 fi
 
 # Code config
-printf "Symlinking VSCode configuration\n"
 ln -sf ~/.vscode.json "$HOME/Library/Application Support/Code/User/settings.json"
